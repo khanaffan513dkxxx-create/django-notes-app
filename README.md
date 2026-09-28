@@ -675,7 +675,7 @@ kubectl delete -f k8s/
 
 Environment files and local database files should not be committed to the repository. The project now uses `k8s/db-secret.example.yml` as a safe template; create the real Secret locally with your own credentials.
 
-GitHub recommends keeping credentials out of repositories and rotating a credential if it has already been exposed. citeturn0search3turn0search6
+GitHub recommends keeping credentials out of repositories and rotating a credential if it has already been exposed. See the [GitHub secret security guidance](https://docs.github.com/en/get-started/learning-to-code/storing-your-secrets-safely).
 
 ## Repository
 
