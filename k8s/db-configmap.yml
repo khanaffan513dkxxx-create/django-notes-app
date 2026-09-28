@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+  namespace: nginx
+data:
+  MYSQL_DATABASE: test_db
