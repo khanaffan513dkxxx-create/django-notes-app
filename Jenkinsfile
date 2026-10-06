@@ -40,12 +40,21 @@ pipeline {
         stage('deploy') {
             steps {
                 echo 'Deploying application'
-                sh '''
-                    docker compose down --remove-orphans || true
-                    docker compose pull django_app
-                    docker compose up -d --build
-                    docker compose ps
-                '''
+                withCredentials([usernamePassword(
+                    credentialsId: 'DockerHubCred',
+                    usernameVariable: 'DOCKERHUB_USER',
+                    passwordVariable: 'DOCKERHUB_PASS'
+                )]) {
+                    sh '''
+                        set +x
+                        echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+                        docker compose down --remove-orphans || true
+                        docker compose pull django_app
+                        docker compose up -d --build
+                        docker compose ps
+                        docker logout
+                    '''
+                }
             }
         }
     }
