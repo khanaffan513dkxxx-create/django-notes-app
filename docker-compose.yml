@@ -13,7 +13,7 @@ services:
       - notes-app-nw
 
   django_app:
-    image: khanaffan513/notes-app:latest
+    image: ${DOCKERHUB_USER:-khanaffan513}/notes-app:latest
     container_name: django_cont
     ports:
       - "8000:8000"
